@@ -8,7 +8,7 @@ num_arr1.map do |e|
   num_arr2.unshift(e)
 end
 end
-p num_arr2
+p num_arr2.inspect
     
 
 
