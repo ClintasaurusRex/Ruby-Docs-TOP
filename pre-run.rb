@@ -1,14 +1,12 @@
 num_arr1 = Array(1..10)
 num_arr2 = Array(5..10)
+str_arr = Array("a".."z")
 
+common = num_arr1.concat(num_arr2)
+p common.count(7)
+p str_arr
 
-p num_arr1.reverse.last(3)
-num_arr1.map do |e|
- if e.odd?
-  num_arr2.unshift(e)
+str_arr.each_with_index do |e, i|
+  p "#{i}: #{e}"
 end
-end
-p num_arr2.inspect
-    
-
 
