@@ -6,11 +6,14 @@
 2. [Accessing Elements](#accessing-elements)
 3. [Modifying Arrays](#modifying-arrays)
 4. [Array Methods](#array-methods)
-5. [Iterating Over an Array](#iterating-over-an-array)
-6. [each vs map](#each-vs-map)
-7. [Nested Arrays](#nested-arrays)
-8. [Comparing Arrays](#comparing-arrays)
-9. [Summary](#summary)
+5. [Mutating the Caller vs Non-Destructive Methods](#mutating-the-caller-vs-non-destructive-methods)
+6. [Common Array Methods](#common-array-methods)
+7. [to_s and String Interpolation](#to_s-and-string-interpolation)
+8. [Iterating Over an Array](#iterating-over-an-array)
+9. [each vs map](#each-vs-map)
+10. [Nested Arrays](#nested-arrays)
+11. [Comparing Arrays](#comparing-arrays)
+12. [Summary](#summary)
 
 ---
 
@@ -121,6 +124,73 @@ a = [1, 2, 3, 4]
 a.map { |num| num**2 } #=> [1, 4, 9, 16]
 a.delete_at(1)        #=> 2
 a                     #=> [1, 3, 4]
+```
+
+---
+
+## Mutating the Caller vs Non-Destructive Methods
+
+Some methods, like `pop`, `push`, `<<`, `delete_at`, `delete`, and `uniq!`, mutate the caller (the original array is changed). Others, like `map`, `select`, `uniq`, and `sort`, return a new array and do not modify the original.
+
+The bang suffix (`!`) at the end of a method name usually indicates that the method will mutate the caller, but not always. Some destructive methods do not have a `!` (e.g., `pop`, `push`). Always check the documentation or test in irb if you are unsure.
+
+Example:
+
+```ruby
+def mutate(arr)
+  arr.pop
+end
+
+def not_mutate(arr)
+  arr.select { |i| i > 3 }
+end
+
+a = [1, 2, 3, 4, 5, 6]
+mutate(a)
+not_mutate(a)
+puts a #=> 1, 2, 3, 4, 5
+```
+
+---
+
+## Common Array Methods
+
+- `include?` checks if a value is present:
+  ```ruby
+  a = [1, 2, 3, 4, 5]
+  a.include?(3) #=> true
+  a.include?(6) #=> false
+  ```
+- `flatten` turns nested arrays into a one-dimensional array:
+  ```ruby
+  a = [1, 2, [3, 4, 5], [6, 7]]
+  a.flatten #=> [1, 2, 3, 4, 5, 6, 7]
+  ```
+- `each_index` and `each_with_index` for index-based iteration:
+  ```ruby
+  a = [1, 2, 3, 4, 5]
+  a.each_index { |i| puts "This is index #{i}" }
+  a.each_with_index { |val, idx| puts "#{idx+1}. #{val}" }
+  ```
+- `sort` returns a sorted array:
+  ```ruby
+  a = [5, 3, 8, 2, 4, 1]
+  a.sort #=> [1, 2, 3, 4, 5, 8]
+  ```
+- `product` combines arrays:
+  ```ruby
+  [1, 2, 3].product([4, 5]) #=> [[1, 4], [1, 5], [2, 4], [2, 5], [3, 4], [3, 5]]
+  ```
+
+---
+
+## to_s and String Interpolation
+
+The `to_s` method is used to create a string representation of an array. Ruby does this behind the scenes when you use string interpolation to print an array to the screen.
+
+```ruby
+a = [1, 2, 3]
+"It's as easy as #{a}" #=> "It's as easy as [1, 2, 3]"
 ```
 
 ---
