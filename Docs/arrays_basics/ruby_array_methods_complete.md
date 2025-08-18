@@ -2,176 +2,138 @@
 
 This document provides a comprehensive guide to all Ruby Array methods, including descriptions, examples, and common use cases.
 
-## Table of Contents
+## Quick Reference & Navigation
 
-1. [Quick Reference Table](#quick-reference-table)
-2. [Detailed Method Explanations](#detailed-method-explanations)
-   - [Creation and Initialization](#creation-and-initialization)
-   - [Access and Retrieval](#access-and-retrieval)
-   - [Modification Methods](#modification-methods)
-   - [Iteration Methods](#iteration-methods)
-   - [Filtering and Selection](#filtering-and-selection)
-   - [Transformation Methods](#transformation-methods)
-   - [Searching and Finding](#searching-and-finding)
-   - [Sorting and Ordering](#sorting-and-ordering)
-   - [Set Operations](#set-operations)
-   - [Utility Methods](#utility-methods)
+| Method                                          | Description                                               |
+| ----------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------- |
+| **Creation and Initialization**                 |
+| [`Array.new`](#arraynew)                        | Creates a new array with optional size and default values |
+| [`[]`](#-array-literal)                         | Creates a new array or accesses elements                  |
+| **Access and Retrieval**                        |
+| [`[]`](#-element-access)                        | Element access by index                                   |
+| [`at`](#at)                                     | Returns element at given index                            |
+| [`fetch`](#fetch)                               | Gets element with optional default                        |
+| [`first`](#first)                               | Returns first element(s)                                  |
+| [`last`](#last)                                 | Returns last element(s)                                   |
+| [`values_at`](#values_at)                       | Returns elements at specified indices                     |
+| [`dig`](#dig)                                   | Safely accesses nested elements                           |
+| **Modification Methods**                        |
+| [`<<`](#-append)                                | Appends an element to the end of the array                |
+| [`push`](#push)                                 | Adds elements to the end                                  |
+| [`unshift`](#unshift--prepend)                  | Adds elements to the beginning                            |
+| [`prepend`](#unshift--prepend)                  | Adds elements to the beginning (alias for unshift)        |
+| [`pop`](#pop)                                   | Removes and returns last element(s)                       |
+| [`shift`](#shift)                               | Removes and returns first element(s)                      |
+| [`insert`](#insert)                             | Inserts elements at specified index                       |
+| [`delete`](#delete)                             | Removes all instances of given value                      |
+| [`delete_at`](#delete_at)                       | Removes element at specific index                         |
+| [`clear`](#clear)                               | Removes all elements                                      |
+| [`fill`](#fill)                                 | Fills array with specified value                          |
+| [`[]=`](#)                                      | Element assignment by index                               |
+| **Iteration Methods**                           |
+| [`each`](#each)                                 | Iterates over each element                                |
+| [`each_with_index`](#each_with_index)           | Iterates with element and index                           |
+| [`each_index`](#each_index)                     | Iterates over each index                                  |
+| [`reverse_each`](#reverse_each)                 | Iterates in reverse order                                 |
+| **Filtering and Selection**                     |
+| [`select`](#select--filter)                     | Returns elements matching condition                       |
+| [`filter`](#select--filter)                     | Returns elements matching condition                       |
+| [`reject`](#reject)                             | Returns elements not matching condition                   |
+| [`keep_if`](#keep_if)                           | Keeps only elements matching condition                    |
+| [`delete_if`](#delete_if)                       | Removes elements matching condition                       |
+| [`compact`](#compact)                           | Returns array with nil elements removed                   |
+| [`compact!`](#compact)                          | Removes nil elements in place                             |
+| [`filter!`](#filter)                            | Keeps only elements matching condition                    |
+| [`select!`](#select)                            | Keeps only elements matching condition                    |
+| [`reject!`](#reject)                            | Removes elements matching condition                       |
+| **Transformation Methods**                      |
+| [`map`](#map--collect)                          | Transforms each element                                   |
+| [`collect`](#map--collect)                      | Transforms elements (alias for map)                       |
+| [`map!`](#map--collect)                         | Transforms each element in place                          |
+| [`collect!`](#map--collect)                     | Transforms elements in place (alias for map!)             |
+| [`flatten`](#flatten)                           | Flattens nested arrays                                    |
+| [`flatten!`](#flatten)                          | Flattens nested arrays in place                           |
+| [`transpose`](#transpose)                       | Transposes array of arrays                                |
+| [`zip`](#zip)                                   | Merges with other arrays element-wise                     |
+| **Searching and Finding**                       |
+| [`include?`](#include)                          | Checks if array contains element                          |
+| [`index`](#index--find_index)                   | Returns index of first occurrence                         |
+| [`find_index`](#index--find_index)              | Returns index of first matching element                   |
+| [`rindex`](#rindex)                             | Returns index of last occurrence                          |
+| [`count`](#count)                               | Counts elements matching condition                        |
+| [`any?`](#any)                                  | Checks if any element meets condition                     |
+| [`all?`](#all)                                  | Checks if all elements meet condition                     |
+| [`none?`](#none)                                | Checks if no elements meet condition                      |
+| [`one?`](#one)                                  | Checks if exactly one element meets condition             |
+| **Sorting and Ordering**                        |
+| [`sort`](#sort)                                 | Returns sorted array                                      |
+| [`sort!`](#sort)                                | Sorts array in place                                      |
+| [`sort_by`](#sort_by)                           | Sorts by block comparison                                 |
+| [`sort_by!`](#sort_by)                          | Sorts in place by block comparison                        |
+| [`reverse`](#reverse)                           | Returns reversed array                                    |
+| [`reverse!`](#reverse)                          | Reverses array in place                                   |
+| [`shuffle`](#shuffle)                           | Returns shuffled array                                    |
+| [`shuffle!`](#shuffle)                          | Shuffles array in place                                   |
+| [`sample`](#sample)                             | Returns random element(s)                                 |
+| **Set Operations**                              |
+| [`+`](#-union)                                  | Array concatenation                                       |
+| [`-`](#--difference)                            | Array difference - removes elements                       |
+| [`&`](#-intersection)                           | Set intersection - returns common elements                |
+| [`                                              | `](#-union-1)                                             | Set union - combines arrays removing duplicates |
+| [`uniq`](#uniq)                                 | Returns array with duplicates removed                     |
+| [`uniq!`](#uniq)                                | Removes duplicates in place                               |
+| [`intersection`](#intersection)                 | Returns common elements                                   |
+| [`union`](#union)                               | Returns union of arrays                                   |
+| [`difference`](#difference)                     | Returns array minus specified elements                    |
+| **Utility Methods**                             |
+| [`length`](#length)                             | Returns number of elements                                |
+| [`size`](#length)                               | Returns number of elements (alias for length)             |
+| [`empty?`](#empty)                              | Checks if array is empty                                  |
+| [`to_a`](#to_a)                                 | Returns self                                              |
+| [`to_ary`](#to_a)                               | Returns self                                              |
+| [`to_h`](#to_h)                                 | Converts to hash                                          |
+| [`to_s`](#to_s)                                 | Returns string representation                             |
+| [`inspect`](#inspect)                           | Returns string representation                             |
+| [`join`](#join)                                 | Joins elements into string                                |
+| [`frozen?`](#frozen)                            | Checks if array is frozen                                 |
+| [`hash`](#hash-1)                               | Returns hash value                                        |
+| [`eql?`](#eql)                                  | Checks if arrays are equal                                |
+| [`==`](#)                                       | Equality comparison                                       |
+| [`<=>`](#)                                      | Comparison operator                                       |
+| **Advanced Methods**                            |
+| [`concat`](#concat)                             | Appends elements from other arrays                        |
+| [`replace`](#replace)                           | Replaces array contents                                   |
+| [`rotate`](#rotate)                             | Returns rotated array                                     |
+| [`rotate!`](#rotate)                            | Rotates array in place                                    |
+| [`slice`](#slice)                               | Returns subarray                                          |
+| [`slice!`](#slice)                              | Removes and returns subarray                              |
+| [`take`](#take)                                 | Returns first n elements                                  |
+| [`drop`](#drop)                                 | Returns array without first n elements                    |
+| [`take_while`](#take_while)                     | Takes elements while condition is true                    |
+| [`drop_while`](#drop_while)                     | Drops elements while condition is true                    |
+| [`min`](#min)                                   | Returns minimum element                                   |
+| [`max`](#max)                                   | Returns maximum element                                   |
+| [`min_by`](#min_by)                             | Returns element with minimum value by block               |
+| [`max_by`](#max_by)                             | Returns element with maximum value by block               |
+| [`minmax`](#minmax)                             | Returns minimum and maximum elements                      |
+| [`minmax_by`](#minmax_by)                       | Returns min/max elements by block comparison              |
+| [`sum`](#sum)                                   | Returns sum of elements                                   |
+| [`product`](#product)                           | Returns Cartesian product                                 |
+| [`permutation`](#permutation)                   | Returns permutations of elements                          |
+| [`combination`](#combination)                   | Returns combinations of elements                          |
+| [`repeated_permutation`](#repeated_permutation) | Returns permutations with repetition                      |
+| [`repeated_combination`](#repeated_combination) | Returns combinations with repetition                      |
+| [`cycle`](#cycle)                               | Repeats array elements infinitely                         |
+| [`pack`](#pack)                                 | Packs array into binary string                            |
+| [`assoc`](#assoc)                               | Finds first array whose first element matches             |
+| [`rassoc`](#rassoc)                             | Finds first array whose second element matches            |
+| [`bsearch`](#bsearch)                           | Binary search for element                                 |
+| [`bsearch_index`](#bsearch_index)               | Binary search returning index                             |
+| [`initialize_copy`](#initialize_copy)           | Initializes array copy                                    |
+| [`*`](#)                                        | Repetition or join operation                              |
+| [`append`](#append)                             | Adds elements to the end (alias for push)                 |
 
-## Quick Reference Table
-
-| Method                 | Description                                     |
-| ---------------------- | ----------------------------------------------- |
-| `[]`                   | Creates a new array or accesses elements        |
-| `<<`                   | Appends an element to the end of the array      |
-| `&`                    | Set intersection - returns common elements      |
-| `*`                    | Repetition or join operation                    |
-| `+`                    | Array concatenation                             |
-| `-`                    | Array difference - removes elements             |
-| `<=>`                  | Comparison operator                             |
-| `==`                   | Equality comparison                             |
-| `[]`                   | Element access by index                         |
-| `[]=`                  | Element assignment by index                     |
-| `\|`                   | Set union - combines arrays removing duplicates |
-| `any?`                 | Checks if any element meets condition           |
-| `all?`                 | Checks if all elements meet condition           |
-| `append`               | Adds elements to the end (alias for push)       |
-| `assoc`                | Finds first array whose first element matches   |
-| `at`                   | Returns element at given index                  |
-| `bsearch`              | Binary search for element                       |
-| `bsearch_index`        | Binary search returning index                   |
-| `clear`                | Removes all elements                            |
-| `collect`              | Transforms elements (alias for map)             |
-| `collect!`             | Transforms elements in place (alias for map!)   |
-| `combination`          | Returns combinations of elements                |
-| `compact`              | Returns array with nil elements removed         |
-| `compact!`             | Removes nil elements in place                   |
-| `concat`               | Appends elements from other arrays              |
-| `count`                | Counts elements matching condition              |
-| `cycle`                | Repeats array elements infinitely               |
-| `delete`               | Removes all instances of given value            |
-| `delete_at`            | Removes element at specific index               |
-| `delete_if`            | Removes elements matching condition             |
-| `difference`           | Returns array minus specified elements          |
-| `dig`                  | Safely accesses nested elements                 |
-| `drop`                 | Returns array without first n elements          |
-| `drop_while`           | Drops elements while condition is true          |
-| `each`                 | Iterates over each element                      |
-| `each_index`           | Iterates over each index                        |
-| `each_with_index`      | Iterates with element and index                 |
-| `empty?`               | Checks if array is empty                        |
-| `eql?`                 | Checks if arrays are equal                      |
-| `fetch`                | Gets element with optional default              |
-| `fill`                 | Fills array with specified value                |
-| `filter`               | Returns elements matching condition             |
-| `filter!`              | Keeps only elements matching condition          |
-| `find_index`           | Returns index of first matching element         |
-| `first`                | Returns first element(s)                        |
-| `flatten`              | Flattens nested arrays                          |
-| `flatten!`             | Flattens nested arrays in place                 |
-| `frozen?`              | Checks if array is frozen                       |
-| `hash`                 | Returns hash value                              |
-| `include?`             | Checks if array contains element                |
-| `index`                | Returns index of first occurrence               |
-| `initialize_copy`      | Initializes array copy                          |
-| `insert`               | Inserts elements at specified index             |
-| `inspect`              | Returns string representation                   |
-| `intersection`         | Returns common elements                         |
-| `join`                 | Joins elements into string                      |
-| `keep_if`              | Keeps only elements matching condition          |
-| `last`                 | Returns last element(s)                         |
-| `length`               | Returns number of elements                      |
-| `map`                  | Transforms each element                         |
-| `map!`                 | Transforms each element in place                |
-| `max`                  | Returns maximum element                         |
-| `max_by`               | Returns element with maximum value by block     |
-| `min`                  | Returns minimum element                         |
-| `min_by`               | Returns element with minimum value by block     |
-| `minmax`               | Returns minimum and maximum elements            |
-| `minmax_by`            | Returns min/max elements by block comparison    |
-| `none?`                | Checks if no elements meet condition            |
-| `one?`                 | Checks if exactly one element meets condition   |
-| `pack`                 | Packs array into binary string                  |
-| `permutation`          | Returns permutations of elements                |
-| `pop`                  | Removes and returns last element(s)             |
-| `prepend`              | Adds elements to the beginning                  |
-| `product`              | Returns Cartesian product                       |
-| `push`                 | Adds elements to the end                        |
-| `rassoc`               | Finds first array whose second element matches  |
-| `reject`               | Returns elements not matching condition         |
-| `reject!`              | Removes elements matching condition             |
-| `repeated_combination` | Returns combinations with repetition            |
-| `repeated_permutation` | Returns permutations with repetition            |
-| `replace`              | Replaces array contents                         |
-| `reverse`              | Returns reversed array                          |
-| `reverse!`             | Reverses array in place                         |
-| `reverse_each`         | Iterates in reverse order                       |
-| `rindex`               | Returns index of last occurrence                |
-| `rotate`               | Returns rotated array                           |
-| `rotate!`              | Rotates array in place                          |
-| `sample`               | Returns random element(s)                       |
-| `select`               | Returns elements matching condition             |
-| `select!`              | Keeps only elements matching condition          |
-| `shift`                | Removes and returns first element(s)            |
-| `shuffle`              | Returns shuffled array                          |
-| `shuffle!`             | Shuffles array in place                         |
-| `size`                 | Returns number of elements (alias for length)   |
-| `slice`                | Returns subarray                                |
-| `slice!`               | Removes and returns subarray                    |
-| `sort`                 | Returns sorted array                            |
-| `sort!`                | Sorts array in place                            |
-| `sort_by`              | Sorts by block comparison                       |
-| `sort_by!`             | Sorts in place by block comparison              |
-| `sum`                  | Returns sum of elements                         |
-| `take`                 | Returns first n elements                        |
-| `take_while`           | Takes elements while condition is true          |
-| `to_a`                 | Returns self                                    |
-| `to_ary`               | Returns self                                    |
-| `to_h`                 | Converts to hash                                |
-| `to_s`                 | Returns string representation                   |
-| `transpose`            | Transposes array of arrays                      |
-| `union`                | Returns union of arrays                         |
-| `uniq`                 | Returns array with duplicates removed           |
-| `uniq!`                | Removes duplicates in place                     |
-| `unshift`              | Adds elements to the beginning                  |
-| `values_at`            | Returns elements at specified indices           |
-| `zip`                  | Merges with other arrays element-wise           |
-| `reject!`              | Removes elements matching condition             |
-| `repeated_combination` | Returns combinations with repetition            |
-| `repeated_permutation` | Returns permutations with repetition            |
-| `replace`              | Replaces array contents                         |
-| `reverse`              | Returns reversed array                          |
-| `reverse!`             | Reverses array in place                         |
-| `reverse_each`         | Iterates in reverse order                       |
-| `rindex`               | Returns index of last occurrence                |
-| `rotate`               | Returns rotated array                           |
-| `rotate!`              | Rotates array in place                          |
-| `sample`               | Returns random element(s)                       |
-| `select`               | Returns elements matching condition             |
-| `select!`              | Keeps only elements matching condition          |
-| `shift`                | Removes and returns first element(s)            |
-| `shuffle`              | Returns shuffled array                          |
-| `shuffle!`             | Shuffles array in place                         |
-| `size`                 | Returns number of elements (alias for length)   |
-| `slice`                | Returns subarray                                |
-| `slice!`               | Removes and returns subarray                    |
-| `sort`                 | Returns sorted array                            |
-| `sort!`                | Sorts array in place                            |
-| `sort_by`              | Sorts by block comparison                       |
-| `sort_by!`             | Sorts in place by block comparison              |
-| `sum`                  | Returns sum of elements                         |
-| `take`                 | Returns first n elements                        |
-| `take_while`           | Takes elements while condition is true          |
-| `to_a`                 | Returns self                                    |
-| `to_ary`               | Returns self                                    |
-| `to_h`                 | Converts to hash                                |
-| `to_s`                 | Returns string representation                   |
-| `transpose`            | Transposes array of arrays                      |
-| `union`                | Returns union of arrays                         |
-| `uniq`                 | Returns array with duplicates removed           |
-| `uniq!`                | Removes duplicates in place                     |
-| `unshift`              | Adds elements to the beginning                  |
-| `values_at`            | Returns elements at specified indices           |
-| `zip`                  | Merges with other arrays element-wise           |
+---
 
 ## Detailed Method Explanations
 
