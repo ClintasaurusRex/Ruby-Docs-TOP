@@ -1,127 +1,81 @@
 # Ruby Built-in Methods - Complete Reference
 
-## Table of Contents
+## Quick Reference & Navigation
 
-1. [Quick Reference Table](#quick-reference-table)
-2. [String Methods](#string-methods)
-   - [length/size](#lengthsize)
-   - [concat/+](#concat)
-   - [upcase/downcase](#upcasedowncase)
-   - [capitalize](#capitalize)
-   - [strip/chomp](#stripchomp)
-   - [split/join](#splitjoin)
-   - [include?](#include)
-   - [gsub/sub](#gsubsub)
-   - [slice/[]](#slice)
-   - [start_with?/end_with?](#start_withend_with)
-3. [Array Methods](#array-methods)
-   - [length/size/count](#lengthsizecount)
-   - [push/<<](#push)
-   - [pop/shift](#popshift)
-   - [unshift](#unshift)
-   - [concat/+](#concat-1)
-   - [join](#join)
-   - [include?](#include-1)
-   - [index/rindex](#indexrindex)
-   - [sort/sort!](#sortsort)
-   - [reverse/reverse!](#reversereverse)
-   - [uniq/uniq!](#uniquniq)
-   - [flatten](#flatten)
-   - [compact](#compact)
-   - [select/filter](#selectfilter)
-   - [reject](#reject)
-   - [map/collect](#mapcollect)
-   - [each](#each)
-   - [each_with_index](#each_with_index)
-   - [find/detect](#finddetect)
-   - [any?/all?](#anyall)
-   - [empty?](#empty)
-   - [first/last](#firstlast)
-   - [sample](#sample)
-   - [min/max](#minmax)
-   - [sum](#sum)
-4. [Numeric Methods](#numeric-methods)
-   - [abs](#abs)
-   - [round](#round)
-   - [ceil/floor](#ceilfloor)
-   - [even?/odd?](#evenodd)
-   - [zero?](#zero)
-   - [between?](#between)
-   - [times](#times)
-   - [upto/downto](#uptodownto)
-   - [step](#step)
-5. [Range Methods](#range-methods)
-   - [to_a](#to_a)
-   - [include?/cover?](#includecover)
-   - [each](#each-1)
-   - [size](#size)
-   - [first/last](#firstlast-1)
-6. [Object Methods](#object-methods)
-   - [class](#class)
-   - [is_a?/kind_of?](#is_akind_of)
-   - [instance_of?](#instance_of)
-   - [respond_to?](#respond_to)
-   - [nil?](#nil)
-   - [to_s](#to_s)
-   - [to_i/to_f](#to_ito_f)
-   - [inspect](#inspect)
-   - [freeze](#freeze)
-   - [frozen?](#frozen)
-7. [Enumerable Methods](#enumerable-methods)
-   - [each_with_object](#each_with_object)
-   - [reduce/inject](#reduceinject)
-   - [group_by](#group_by)
-   - [partition](#partition)
-   - [zip](#zip)
-   - [cycle](#cycle)
-
----
-
-## Quick Reference Table
-
-| Method            | Applies To           | Description                        |
-| ----------------- | -------------------- | ---------------------------------- |
-| `length/size`     | String, Array, Hash  | Returns number of elements         |
-| `concat/+`        | String, Array        | Combines two objects               |
-| `upcase/downcase` | String               | Changes case of all letters        |
-| `capitalize`      | String               | Capitalizes first letter           |
-| `strip/chomp`     | String               | Removes whitespace                 |
-| `split`           | String               | Converts string to array           |
-| `join`            | Array                | Converts array to string           |
-| `include?`        | String, Array, Range | Checks if contains element         |
-| `gsub/sub`        | String               | Substitutes text                   |
-| `push/<<`         | Array                | Adds element to end                |
-| `pop/shift`       | Array                | Removes element from end/beginning |
-| `unshift`         | Array                | Adds element to beginning          |
-| `sort`            | Array                | Sorts elements                     |
-| `reverse`         | Array, String        | Reverses order                     |
-| `uniq`            | Array                | Removes duplicates                 |
-| `flatten`         | Array                | Flattens nested arrays             |
-| `compact`         | Array                | Removes nil values                 |
-| `select/filter`   | Array, Hash          | Filters elements by condition      |
-| `reject`          | Array, Hash          | Excludes elements by condition     |
-| `map/collect`     | Array, Hash          | Transforms each element            |
-| `each`            | Array, Hash, Range   | Iterates over elements             |
-| `find/detect`     | Array                | Finds first matching element       |
-| `any?/all?`       | Array                | Tests if any/all elements match    |
-| `empty?`          | String, Array, Hash  | Checks if contains no elements     |
-| `first/last`      | Array, Range         | Gets first/last element            |
-| `sample`          | Array                | Gets random element                |
-| `min/max`         | Array                | Gets smallest/largest element      |
-| `sum`             | Array                | Adds all numeric elements          |
-| `abs`             | Numeric              | Absolute value                     |
-| `round`           | Numeric              | Rounds to nearest integer          |
-| `ceil/floor`      | Numeric              | Rounds up/down                     |
-| `even?/odd?`      | Integer              | Checks if even or odd              |
-| `times`           | Integer              | Repeats block n times              |
-| `upto/downto`     | Integer              | Iterates up/down to number         |
-| `to_a`            | Range, Hash          | Converts to array                  |
-| `class`           | All objects          | Returns object's class             |
-| `is_a?`           | All objects          | Checks if object is of type        |
-| `nil?`            | All objects          | Checks if object is nil            |
-| `to_s/to_i/to_f`  | All objects          | Type conversion                    |
-| `reduce/inject`   | Enumerable           | Combines elements with operation   |
-| `group_by`        | Enumerable           | Groups elements by criteria        |
+| Method                                         | Applies To           | Description                        |
+| ---------------------------------------------- | -------------------- | ---------------------------------- |
+| **String Methods**                             |
+| [`length/size`](#lengthsize)                   | String, Array, Hash  | Returns number of elements         |
+| [`concat/+`](#concat)                          | String, Array        | Combines two objects               |
+| [`upcase/downcase`](#upcasedowncase)           | String               | Changes case of all letters        |
+| [`capitalize`](#capitalize)                    | String               | Capitalizes first letter           |
+| [`strip/chomp`](#stripchomp)                   | String               | Removes whitespace                 |
+| [`split`](#split)                              | String               | Converts string to array           |
+| [`join`](#join-1)                              | Array                | Converts array to string           |
+| [`include?`](#include)                         | String, Array, Range | Checks if contains element         |
+| [`gsub/sub`](#gsubsub)                         | String               | Substitutes text                   |
+| [`slice/[]`](#slice)                           | String               | Extracts portions of string        |
+| [`start_with?/end_with?`](#start_withend_with) | String               | Checks string start/end            |
+| **Array Methods**                              |
+| [`length/size/count`](#lengthsizecount)        | Array                | Returns number of elements         |
+| [`push/<<`](#push)                             | Array                | Adds element to end                |
+| [`pop/shift`](#popshift)                       | Array                | Removes element from end/beginning |
+| [`unshift`](#unshift)                          | Array                | Adds element to beginning          |
+| [`concat/+`](#concat-1)                        | Array                | Combines arrays                    |
+| [`join`](#join)                                | Array                | Converts array to string           |
+| [`include?`](#include-1)                       | Array                | Checks if contains element         |
+| [`index/rindex`](#indexrindex)                 | Array                | Finds position of element          |
+| [`sort/sort!`](#sortsort)                      | Array                | Sorts elements                     |
+| [`reverse/reverse!`](#reversereverse)          | Array                | Reverses order                     |
+| [`uniq/uniq!`](#uniquniq)                      | Array                | Removes duplicates                 |
+| [`flatten`](#flatten)                          | Array                | Flattens nested arrays             |
+| [`compact`](#compact)                          | Array                | Removes nil values                 |
+| [`select/filter`](#selectfilter)               | Array, Hash          | Filters elements by condition      |
+| [`reject`](#reject)                            | Array, Hash          | Excludes elements by condition     |
+| [`map/collect`](#mapcollect)                   | Array, Hash          | Transforms each element            |
+| [`each`](#each)                                | Array, Hash, Range   | Iterates over elements             |
+| [`each_with_index`](#each_with_index)          | Array                | Iterates with index                |
+| [`find/detect`](#finddetect)                   | Array                | Finds first matching element       |
+| [`any?/all?`](#anyall)                         | Array                | Tests if any/all elements match    |
+| [`empty?`](#empty)                             | String, Array, Hash  | Checks if contains no elements     |
+| [`first/last`](#firstlast)                     | Array, Range         | Gets first/last element            |
+| [`sample`](#sample)                            | Array                | Gets random element                |
+| [`min/max`](#minmax)                           | Array                | Gets smallest/largest element      |
+| [`sum`](#sum)                                  | Array                | Adds all numeric elements          |
+| **Numeric Methods**                            |
+| [`abs`](#abs)                                  | Numeric              | Absolute value                     |
+| [`round`](#round)                              | Numeric              | Rounds to nearest integer          |
+| [`ceil/floor`](#ceilfloor)                     | Numeric              | Rounds up/down                     |
+| [`even?/odd?`](#evenodd)                       | Integer              | Checks if even or odd              |
+| [`zero?`](#zero)                               | Numeric              | Checks if equals zero              |
+| [`between?`](#between)                         | Numeric              | Checks if between two values       |
+| [`times`](#times)                              | Integer              | Repeats block n times              |
+| [`upto/downto`](#uptodownto)                   | Integer              | Iterates up/down to number         |
+| [`step`](#step)                                | Numeric              | Iterates with step size            |
+| **Range Methods**                              |
+| [`to_a`](#to_a)                                | Range, Hash          | Converts to array                  |
+| [`include?/cover?`](#includecover)             | Range                | Checks if contains value           |
+| [`each`](#each-1)                              | Range                | Iterates over range                |
+| [`size`](#size)                                | Range                | Returns number of elements         |
+| [`first/last`](#firstlast-1)                   | Range                | Gets first/last element            |
+| **Object Methods**                             |
+| [`class`](#class)                              | All objects          | Returns object's class             |
+| [`is_a?/kind_of?`](#is_akind_of)               | All objects          | Checks if object is of type        |
+| [`instance_of?`](#instance_of)                 | All objects          | Checks exact class type            |
+| [`respond_to?`](#respond_to)                   | All objects          | Checks if responds to method       |
+| [`nil?`](#nil)                                 | All objects          | Checks if object is nil            |
+| [`to_s`](#to_s)                                | All objects          | Converts to string                 |
+| [`to_i/to_f`](#to_ito_f)                       | All objects          | Type conversion                    |
+| [`inspect`](#inspect)                          | All objects          | Detailed string representation     |
+| [`freeze`](#freeze)                            | All objects          | Makes object immutable             |
+| [`frozen?`](#frozen)                           | All objects          | Checks if object is frozen         |
+| **Enumerable Methods**                         |
+| [`each_with_object`](#each_with_object)        | Enumerable           | Iterates with accumulator          |
+| [`reduce/inject`](#reduceinject)               | Enumerable           | Combines elements with operation   |
+| [`group_by`](#group_by)                        | Enumerable           | Groups elements by criteria        |
+| [`partition`](#partition)                      | Enumerable           | Splits into two groups             |
+| [`zip`](#zip)                                  | Enumerable           | Combines multiple arrays           |
+| [`cycle`](#cycle)                              | Enumerable           | Repeats collection                 |
 
 ---
 
