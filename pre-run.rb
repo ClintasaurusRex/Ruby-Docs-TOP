@@ -1,15 +1,17 @@
-
+require 'pry-byebug'
 arr = Array(1..10)
 words = ["Hello", "World", "This", "Is", "Not", "Python"]
 
-def check_word_array(arr, w)
-  check_if_in_arr = arr.include?(w)
-  check_index = arr.index(w)
-  p "'#{check_if_in_arr}' is in the array at index #{check_index}"
+def isogram?(string)
+  original_len = string.length
+  string_arr = string.downcase.split
+  binding.pry
+  unique_len = string_arr.uniq.length
+  original_len == unique_len
 end
 
-check_word_array(words, 'This')
-
+p isogram?("Odin")
+p "splits".split(' ')
 # check_if_in_arr = words.include?('This')
 # check_index = words.index('This')
 # p check_index
