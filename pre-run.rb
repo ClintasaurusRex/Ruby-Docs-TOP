@@ -1,17 +1,32 @@
 require 'pry-byebug'
 arr = Array(1..10)
-words = ["Hello", "World", "This", "Is", "Not", "Python"]
+word_array = ["Hello", "World", "This", "Is", "Not", "Python"]
 
-def isogram?(string)
-  original_len = string.length
-  string_arr = string.downcase.split
-  binding.pry
-  unique_len = string_arr.uniq.length
-  original_len == unique_len
+def find_word(arr, word)
+  if arr.include?(word)
+    p "You picked '#{word}'. It is at index #{arr.index(word)}"
+  else
+    p "The word '#{word}' is not in the array"
+  end
 end
 
-p isogram?("Odin")
-p "splits".split(' ')
+p "What word are you looking for? "
+word = gets.capitalize.chomp
+
+find_word(word_array, word)
+
+# def isogram?(string)
+#   original_len = string.length
+#   string_arr = string.downcase.split
+#   binding.pry
+#   unique_len = string_arr.uniq.length
+#   original_len == unique_len
+# end
+
+# p isogram?("Odin")
+# p "splits".split(' ')
+
+
 # check_if_in_arr = words.include?('This')
 # check_index = words.index('This')
 # p check_index
