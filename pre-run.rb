@@ -1,19 +1,40 @@
-require 'pry-byebug'
-arr = Array(1..10)
-word_array = ["Hello", "World", "This", "Is", "Not", "Python"]
 
-def find_word(arr, word)
-  if arr.include?(word)
-    p "You picked '#{word}'. It is at index #{arr.index(word)}"
-  else
-    p "The word '#{word}' is not in the array"
+numbers = Array(1..30)
+
+
+def only_evens?(arr)
+  evens = arr.each_with_object([]) do |num, arr|
+    arr << num if num.even?
   end
 end
 
-p "What word are you looking for? "
-word = gets.capitalize.chomp
+def grouped_by(arr)
+  evens = []
+  odds = []
 
-find_word(word_array, word)
+
+  puts evens
+end
+
+grouped_by(numbers)
+
+# puts only_evens?(numbers).inspect
+# require 'pry-byebug'
+# arr = Array(1..10)
+# word_array = ["Hello", "World", "This", "Is", "Not", "Python"]
+
+# def find_word(arr, word)
+#   if arr.include?(word)
+#     p "You picked '#{word}'. It is at index #{arr.index(word)}"
+#   else
+#     p "The word '#{word}' is not in the array"
+#   end
+# end
+
+# p "What word are you looking for? "
+# word = gets.capitalize.chomp
+
+# find_word(word_array, word)
 
 # def isogram?(string)
 #   original_len = string.length

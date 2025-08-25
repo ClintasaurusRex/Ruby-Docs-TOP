@@ -27,3 +27,35 @@ def palindrome?(str)
 end
 puts palindrome?("racecar") # Output: true
 puts palindrome?("hello")   # Output: false
+
+def fizzbuzz
+  for num in 1..100
+    if num % 3 == 0 && num % 5 == 0
+      puts "FizzBuzz"
+    elsif num % 3 == 0
+      puts "Fizz"
+    elsif num % 5 == 0
+      puts "Buzz"
+    end
+  end
+end
+
+def sum_array(arr)
+  arr.sum
+end
+
+puts sum_array([20,20,20,20,20])
+
+puts "---------------------------------------------"
+
+def largest_number(arr)
+  arr.max
+end
+
+puts largest_number([1,2,30,4,5])
+puts "---------------------------------------------"
+
+def create_hash(keys, values)
+ keys.zip(values).to_h
+end
+puts create_hash(["name", "age"], ["Alice", 21])
