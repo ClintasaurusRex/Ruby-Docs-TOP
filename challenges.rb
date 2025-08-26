@@ -1,61 +1,70 @@
-def reverse_string(str)
+# Challenge 1: Print Each Element
+# Write a method that takes an array and prints each element.
+numbers = Array((1..20))
+places = ["mill bay", 'duncan', 'victoria', 'ladysmith']
+def print_elements(arr)
   # Your code here
-  str.reverse
 end
 
-puts reverse_string("hello") # Output: "olleh"
+# Challenge 2: Multiply Each Element
+# Write a method that takes an array of numbers and multiplies each element by 2, printing the result.
 
-def find_evens(arr)
+def multiply_elements(arr)
   # Your code here
-  arr.select do |num|
-    num.even?
-  end
 end
 
-puts find_evens([1, 2, 3, 4, 5, 6]).inspect # Output: [2, 4, 6]
+# Challenge 3: Capitalize Words
+# Write a method that takes an array of strings and prints each string capitalized.
 
-def count_vowels(str)
+def capitalize_words(words)
   # Your code here
-  lowered = str.downcase
-  lowered.count('aeiou')
 end
 
-puts count_vowels("hello world") # Output: 3
+# Challenge 4: Sum of Elements
+# Write a method that calculates the sum of all elements in an array.
 
-def palindrome?(str)
-  str == str.reverse
-end
-puts palindrome?("racecar") # Output: true
-puts palindrome?("hello")   # Output: false
-
-def fizzbuzz
-  for num in 1..100
-    if num % 3 == 0 && num % 5 == 0
-      puts "FizzBuzz"
-    elsif num % 3 == 0
-      puts "Fizz"
-    elsif num % 5 == 0
-      puts "Buzz"
-    end
-  end
+def sum_elements(arr)
+  # Your code here
 end
 
-def sum_array(arr)
-  arr.sum
+# Challenge 5: Filter Even Numbers
+# Write a method that prints only the even numbers from an array.
+
+def print_evens(arr)
+  # Your code here
 end
 
-puts sum_array([20,20,20,20,20])
+# Challenge 6: Create a Sentence
+# Write a method that takes an array of words and prints them as a single sentence.
 
-puts "---------------------------------------------"
-
-def largest_number(arr)
-  arr.max
+def create_sentence(words)
+  # Your code here
 end
 
-puts largest_number([1,2,30,4,5])
-puts "---------------------------------------------"
+# Challenge 7: Count Elements
+# Write a method that counts how many elements are in an array.
 
-def create_hash(keys, values)
- keys.zip(values).to_h
+def count_elements(arr)
+  # Your code here
 end
-puts create_hash(["name", "age"], ["Alice", 21])
+
+# Challenge 8: Find the Longest Word
+# Write a method that finds and prints the longest word in an array of strings.
+
+def longest_word(words)
+  # Your code here
+end
+
+# Challenge 9: Double the Values in a Hash
+# Write a method that doubles the values of a hash where the values are numbers.
+
+def double_hash_values(hash)
+  # Your code here
+end
+
+# Challenge 10: Find Words Starting with a Specific Letter
+# Write a method that prints words starting with a specific letter from an array.
+
+def words_starting_with(words, letter)
+  # Your code here
+end

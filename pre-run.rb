@@ -9,11 +9,16 @@ def only_evens?(arr)
 end
 
 def grouped_by(arr)
-  evens = []
   odds = []
-
-
-  puts evens
+  evens = []
+  arr.map do |num|
+    if num.even?
+      evens << num
+    else
+      odds << num
+    end
+  end
+  puts "Even numbers: #{evens.inspect}\nOdd numbers: #{odds.inspect}"
 end
 
 grouped_by(numbers)
