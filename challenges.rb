@@ -91,15 +91,40 @@ puts "--------------------------------------------------------------------------
 
 def longest_word(words)
   # Your code here
-end
+  longest = ""
+  count = 0
+  words.max_by{
+    |word| longest = word 
+  count = word.length 
+}  
+  return "The longest word is #{longest} is has #{count} letters"
 
+  # longest = ""
+  # word_length = 0
+  # words.each do |word|
+  #   if word.length > longest.to_i
+  #      longest = word
+  #      word_length = word.length
+  #   end
+  # end
+  # return "The longest word is #{longest}, it has #{word_length} letters"
+end
+puts longest_word(places)
+
+puts "----------------------------------------------------------------------------------------------------"
+
+num_hash = {a: 1, b: 2, c: 3}
 # Challenge 9: Double the Values in a Hash
 # Write a method that doubles the values of a hash where the values are numbers.
-
+puts num_hash[:a]
 def double_hash_values(hash)
   # Your code here
-end
+  hash.each do |key, value|
+    hash[key] = value * 2
+  end
 
+end
+puts double_hash_values(num_hash)
 # Challenge 10: Find Words Starting with a Specific Letter
 # Write a method that prints words starting with a specific letter from an array.
 
