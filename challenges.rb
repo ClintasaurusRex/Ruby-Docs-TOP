@@ -127,6 +127,7 @@ end
 puts double_hash_values(num_hash)
 # Challenge 10: Find Words Starting with a Specific Letter
 # Write a method that prints words starting with a specific letter from an array.
+puts "----------------------------------------------------------------------------------------------------"
 
 def words_starting_with(words, letter)
   # Your code here
@@ -139,5 +140,5 @@ def words_starting_with(words, letter)
   puts word_with_letter
 end
 
-words_starting_with(places, "M")
+words_starting_with(places, "v")
 
