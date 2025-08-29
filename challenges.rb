@@ -130,4 +130,14 @@ puts double_hash_values(num_hash)
 
 def words_starting_with(words, letter)
   # Your code here
+  word_with_letter = ""
+  words.each do |word|
+    if word.start_with?(letter.downcase)
+      word_with_letter = word
+    end
+  end
+  puts word_with_letter
 end
+
+words_starting_with(places, "M")
+
