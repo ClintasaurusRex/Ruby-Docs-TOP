@@ -121,7 +121,7 @@ friends.each do |friend|
   end
 end
 
-invited_list
+
  #=> ["Sharon", "Leo", "Leila", "Arun"]
 
 
@@ -137,11 +137,11 @@ friends.select { |friend| friend != 'Brian' }
 responses = { 'Sharon' => 'yes', 'Leo' => 'no', 'Leila' => 'no', 'Arun' => 'yes' }
 said_yes = []
 said_no = []
-responded = responses.select { |person, response| 
-if response =='yes'
+responses.select { |person, response| 
+if response == 'yes'
   then said_yes << person
- else said_no << person
- end}
+else said_no << person
+end}
 puts said_yes.inspect
 puts said_no.inspect
 
