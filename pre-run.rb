@@ -1,6 +1,31 @@
 
 numbers = Array(1..30)
 
+puts "Enter a number"
+input = gets.chomp.to_i
+
+num_include = numbers.include?(input)
+if num_include
+  index_of = numbers.index(input)
+   puts "Your number #{input} is in the array at index #{index_of}"
+else
+  "Your number is not in the array"
+end
+
+puts numbers.inspect
+
+
+
+
+# -----------------------------------------------------------------------------
+# new_arr = numbers.reject { |num| num.even?  } 
+# puts new_arr.inspect
+def odds_evens(arr)
+  odd_nums = arr.select{ |num| num.odd?}
+  even_nums = arr.select { |num| num.even?}
+  return "Even numbers: #{even_nums.inspect}\nOdd numbers: #{odd_nums.inspect}"
+end
+# puts odds_evens(numbers)
 
 def only_evens?(arr)
   evens = arr.each_with_object([]) do |num, arr|
@@ -21,7 +46,9 @@ def grouped_by(arr)
   puts "Even numbers: #{evens.inspect}\nOdd numbers: #{odds.inspect}"
 end
 
-grouped_by(numbers)
+# grouped_by(numbers)
+
+# --------------------------------------------------------------------------------------
 
 # puts only_evens?(numbers).inspect
 # require 'pry-byebug'

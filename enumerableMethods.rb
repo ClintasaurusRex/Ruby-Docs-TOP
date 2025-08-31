@@ -17,7 +17,7 @@ responses.select do |person, response|
 end
 
 puts said_yes.inspect
-puts said_no.inspecto find and replace text in strings.
+puts said_no.inspect find and replace text in strings
 # Replaces all matches of pattern in the string with replacement.
 # It does not change the original string unless you use gsub! notice the bang operator !
 
