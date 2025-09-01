@@ -1,17 +1,31 @@
+# frozen_string_literal: true
 
+places = ['mill bay', 'ladysmith', 'victoria', 'nanaimo', 'cedar']
 numbers = Array(1..30)
 
+puts(places.reject { |place| place == 'cedar' }, '---------------').inspect
+
+def longest_word(words)
+  longest = ''
+
+  words.each do |word|
+    longest = word if word.length > longest.length
+  end
+  longest
+end
+
+puts longest_word(places)
 
 def only_evens?(arr)
-  evens = arr.each_with_object([]) do |num, arr|
-    arr << num if num.even?
+  arr.each_with_object([]) do |num, evens|
+    evens << num if num.even?
   end
 end
 
 def grouped_by(arr)
   odds = []
   evens = []
-  arr.map do |num|
+  arr.each do |num|
     if num.even?
       evens << num
     else
@@ -52,7 +66,6 @@ grouped_by(numbers)
 # p isogram?("Odin")
 # p "splits".split(' ')
 
-
 # check_if_in_arr = words.include?('This')
 # check_index = words.index('This')
 # p check_index
@@ -78,8 +91,7 @@ grouped_by(numbers)
 # p merged['shoes'].keys
 # Array Practice
 
-
-#num_arr1 = Array(1..10)
+# num_arr1 = Array(1..10)
 # num_arr2 = Array(5..10)
 # str_arr = Array("a".."z")
 
@@ -91,8 +103,6 @@ grouped_by(numbers)
 # num_arr1.filter do |n|
 #   new_list.push(n.even?)
 # end
-
-
 
 # p new_list
 # p "False appears #{new_list.count(false)} times"
