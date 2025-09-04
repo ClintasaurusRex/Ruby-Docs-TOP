@@ -104,7 +104,7 @@ puts "-------------------------------------------------------------------"
 only_names = vehicles.collect { |name, data| name if data[:year] >= 2020 }.compact # try with and without the #compact
 puts only_names.inspect
 
-with_map_filter = vehicles.filter_map{|name, data| name if data[:year] >= 2020}
+with_map_filter = vehicles.filter_map { |name, data| name if data[:year] >= 2020 }
 puts with_map_filter.inspect # filter_map combines the collect with the compact into one function :)
 
 puts "-------------------------------------------------------------------"

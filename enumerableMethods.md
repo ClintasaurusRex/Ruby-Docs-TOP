@@ -1,42 +1,5 @@
 friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
-invited_l# gsub in Ruby stands for "global substitution", and# Now that we've cut out Brian, we can send out the invites! Let's say that the friends 
-# who you invited to your party have gotten back to you, and their responses are all 
-# recorded in a hash. Let's use #select to see who's coming. Recall that when you use 
-# an enumerable method with a hash, you need to set up block variables for both the key and the value:
-
-responses = { 'Sharon' => 'yes', 'Leo' => 'no', 'Leila' => 'no', 'Arun' => 'yes' }
-said_yes = []
-said_no = []
-
-responses.select do |person, response| 
-  if response == 'yes'
-    said_yes << person
-  else
-    said_no << person
-  end
-end
-
-puts said_yes.inspect
-puts said_no.inspect find and replace text in strings
-# Replaces all matches of pattern in the string with replacement.
-# It does not change the original string unless you use gsub! notice the bang operator !
-
-# string.gsub(pattern, replacement)
-# "hello world".gsub(/[aeiou]/, "*")
-# # => "h*ll* w*rld"
-# "ruby is fun".gsub("fun", "awesome")
-# # => "ruby is awesome"
-
-my_order = ['medium Big Mac', 'medium fries', 'medium milkshake']
-
-my_order.map { |item| item.gsub('medium', 'extra large') }
-#=> ["extra large Big Mac", "extra large fries", "extra large milkshake"]r friend in friends do
-  if friend != 'Brian'
-    invited_list.push(friend)
-  end
-end
-
-puts invited_list.inspect #=> ["Sharon", "Leo", "Leila", "Arun"]
+invited_list = []
 
 # You don't have to use the "do" in the for loop. 
 # Here are two other ways to write the code above
@@ -144,4 +107,114 @@ if response =='yes'
  end}
 puts said_yes.inspect
 puts said_no.inspect
+
+# Enumerable Methods in Ruby
+
+## The `reduce` Method
+The `#reduce` method (also called `#inject`) is possibly the most difficult-to-grasp enumerable for new coders. The general idea is that it takes an array or hash and reduces it down to a single object. You should use `#reduce` when you want to get an output of a single value.
+
+### Example: Summing an Array
+Using `#each`:
+```ruby
+my_numbers = [5, 6, 7, 8]
+sum = 0
+
+my_numbers.each { |number| sum += number }
+
+sum
+#=> 26
+```
+
+Using `#reduce`:
+```ruby
+my_numbers = [5, 6, 7, 8]
+
+my_numbers.reduce { |sum, number| sum + number }
+#=> 26
+```
+
+### How It Works
+The first block variable in the `#reduce` enumerable (e.g., `sum`) is known as the accumulator. The result of each iteration is stored in the accumulator and then passed to the next iteration. By default, the initial value of the accumulator is the first element in the collection.
+
+#### Example with Initial Value
+```ruby
+my_numbers = [5, 6, 7, 8]
+
+my_numbers.reduce(1000) { |sum, number| sum + number }
+#=> 1026
+```
+
+### Advanced Example: Counting Votes
+```ruby
+votes = ["Bob's Dirty Burger Shack", "St. Mark's Bistro", "Bob's Dirty Burger Shack"]
+
+votes.reduce(Hash.new(0)) do |result, vote|
+  result[vote] += 1
+  result
+end
+#=> {"Bob's Dirty Burger Shack"=>2, "St. Mark's Bistro"=>1}
+```
+
+### Explanation
+- The initial value for the accumulator is a hash with a default value of `0`.
+- Each iteration updates the hash by incrementing the count for the corresponding vote.
+
+## Bang Methods
+Enumerables like `#map` and `#select` return new arrays but don’t modify the arrays they were called on. Bang methods (e.g., `#map!`) modify the original array or hash.
+
+### Example: Non-Destructive `#map`
+```ruby
+friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+
+friends.map { |friend| friend.upcase }
+#=> ['SHARON', 'LEO', 'LEILA', 'BRIAN', 'ARUN']
+
+friends
+#=> ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+```
+
+### Example: Destructive `#map!`
+```ruby
+friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+
+friends.map! { |friend| friend.upcase }
+#=> ['SHARON', 'LEO', 'LEILA', 'BRIAN', 'ARUN']
+
+friends
+#=> ['SHARON', 'LEO', 'LEILA', 'BRIAN', 'ARUN']
+```
+
+### Best Practices
+Avoid using bang methods unless absolutely necessary, as they modify the original object and may lead to unintended side effects.
+
+## Return Values of Enumerables
+If you need to reuse the result of an enumerable method, store it in a local variable or wrap it in a method definition.
+
+### Example: Using a Local Variable
+```ruby
+friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+
+invited_friends = friends.select { |friend| friend != 'Brian' }
+
+friends
+#=> ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+
+invited_friends
+#=> ["Sharon", "Leo", "Leila", "Arun"]
+```
+
+### Example: Using a Method Definition
+```ruby
+friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+
+def invited_friends(friends)
+  friends.select { |friend| friend != 'Brian' }
+end
+
+friends
+#=> ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
+
+invited_friends(friends)
+#=> ["Sharon", "Leo", "Leila", "Arun"]
+```
 
