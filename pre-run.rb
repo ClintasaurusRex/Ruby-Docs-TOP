@@ -108,3 +108,26 @@ with_map_filter = vehicles.filter_map { |name, data| name if data[:year] >= 2020
 puts with_map_filter.inspect # filter_map combines the collect with the compact into one function :)
 
 puts "-------------------------------------------------------------------"
+def caesar_cipher(string, shift)
+  result = ""
+
+  string.each_char do |char|
+    if char >= 'a' && char <= 'z'
+      # Shift lowercase letters
+      new_char = ((char.ord - 'a'.ord + shift) % 26 + 'a'.ord).chr
+      result += new_char
+    elsif char >= 'A' && char <= 'Z'
+      # Shift uppercase letters
+      new_char = ((char.ord - 'A'.ord + shift) % 26 + 'A'.ord).chr
+      result += new_char
+    else
+      # Keep non-alphabetic characters unchanged
+      result += char
+    end
+  end
+
+  result
+end
+
+# Example usage
+puts caesar_cipher("What a string!", 5) # => "Bmfy f xywnsl!"
